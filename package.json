@@ -6,7 +6,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
+    "@vue/component-compiler-utils": "^3.0.0",
     "autoprefixer": "^9.5.1",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-istanbul": "^5.1.4",
     "chai": "^4.2.0",
     "cypress": "^3.2.0",
@@ -14,15 +16,21 @@
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-cypress": "^2.2.1",
     "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^5.2.2",
     "http-server": "^0.11.1",
     "jsinspect": "^0.12.7",
     "mocha": "^6.1.4",
     "nyc": "^14.1.0",
     "parcel-bundler": "^1.12.3",
+    "postcss": "^7.0.16",
     "prettier": "^1.17.0",
+    "sass": "^1.20.1",
     "shelljs": "^0.8.3",
     "stylelint": "^10.0.1",
-    "stylelint-config-recommended": "^2.2.0"
+    "stylelint-config-prettier": "^5.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-prettier": "^1.0.6",
+    "vue-template-compiler": "^2.6.10"
   },
   "scripts": {
     "test": "test"
@@ -44,8 +52,9 @@
   },
   "homepage": "https://github.com/sallamx99/ci-cd-no-cli#readme",
   "dependencies": {
-    "postcss": "^7.0.16",
-    "stylelint-config-prettier": "^5.1.0",
-    "stylelint-prettier": "^1.0.6"
+    "@babel/core": "^7.4.4",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3",
+    "vue-router": "^3.0.6"
   }
 }

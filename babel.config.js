@@ -1,3 +1,16 @@
-module.exports = {
-  presets: [['@babel/preset-env']],
+module.exports = function(api) {
+  api.cache(true);
+
+  const presets = [
+    '@babel/preset-env',
+    {
+      useBuiltIns: 'usage',
+    },
+  ];
+  const plugins = [];
+
+  return {
+    presets,
+    plugins,
+  };
 };
