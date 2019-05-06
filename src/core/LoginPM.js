@@ -67,7 +67,8 @@ export function loginPM() {
     },
 
     get shouldDisableSubmit() {
-      return !this.valid;
+      this._validate();
+      return !this._valid;
     },
 
     alert: undefined,
