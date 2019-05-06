@@ -2,7 +2,42 @@
   "name": "ci-cd-no-cli",
   "version": "1.0.0",
   "description": "CI/CI example without using framework CLI",
+  "author": "Mohamed Sallam",
+  "license": "MIT",
   "main": "",
+  "bugs": {
+    "url": "https://github.com/sallamx99/ci-cd-no-cli/issues"
+  },
+  "homepage": "https://github.com/sallamx99/ci-cd-no-cli#readme",
+  "keywords": [
+    "ci",
+    "cd",
+    "google-cloud",
+    "google-cloud-build"
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "serve":"parcel serve src/index.html --open",
+    "serve:e2e": "",
+    "bundle": "rm -rf ./dist && parcel build src/index.html",
+    "lint": "",
+    "lint:fix": "",
+    "dups:test": "",
+    "dups:src":"",
+    "test:unit": "",
+    "test:int": "",
+    "test:e2e": "",
+    "test:coverage": "",
+    "test": "",
+    "build":""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sallamx99/ci-cd-no-cli.git"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
@@ -33,32 +68,9 @@
     "vue-hot-reload-api": "^2.3.3",
     "vue-template-compiler": "^2.6.10"
   },
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sallamx99/ci-cd-no-cli.git"
-  },
-  "keywords": [
-    "ci",
-    "cd",
-    "google-cloud",
-    "google-cloud-build"
-  ],
-  "author": "Mohamed Sallam",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sallamx99/ci-cd-no-cli/issues"
-  },
-  "homepage": "https://github.com/sallamx99/ci-cd-no-cli#readme",
   "dependencies": {
     "@babel/core": "^7.4.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6"
-  },
-  "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
   }
 }
