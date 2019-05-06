@@ -28,14 +28,12 @@
     "lint:fix": "npm run lint:code -- --fix && npm run lint:style -- --fix",
     "lint": "npm run lint:code && npm run lint:style",
     "dups:src": "jsinspect --threshold 30 --minimum-instances 2 ./src",
-    "dups:test": "jsinspect --threshold 50 --minimum-instances 3 ./tests",
+    "dups:test": "jsinspect --threshold 50 --minimum-instances 3 ./test",
     "dups": "npm run dups:src && npm run dups:test",
-    "test:unit": "",
-    "test:int": "",
+    "test": "NODE_ENV=test nyc npm run test:unit",
     "test:e2e": "",
-    "test:coverage": "",
-    "test": "",
-    "build": "npm run lint && npm run dups && npm run test"
+    "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
+    "build": "npm run lint && npm run dups && npm run test && npm run test:e2e"
   },
   "repository": {
     "type": "git",
@@ -55,6 +53,7 @@
     "eslint-plugin-cypress": "^2.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.2.2",
+    "esm": "^3.2.22",
     "http-server": "^0.11.1",
     "jsinspect": "^0.12.7",
     "mocha": "^6.1.4",

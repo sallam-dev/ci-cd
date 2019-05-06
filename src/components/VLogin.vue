@@ -19,9 +19,9 @@
         :placeholder="email.placeholder"
         required
         @input="email.validate()"
-        @blur="email.blur()"
+        @blur="email.blurred()"
       />
-      <div v-if="email.showError" class="validation-error">
+      <div v-if="email.shouldShowError" class="validation-error">
         {{ email.error }}
       </div>
 
@@ -35,9 +35,9 @@
         :placeholder="password.placeholder"
         required
         @input="password.validate()"
-        @blur="password.blur()"
+        @blur="password.blurred()"
       />
-      <div v-if="password.showError" class="validation-error">
+      <div v-if="password.shouldShowError" class="validation-error">
         {{ password.error }}
       </div>
 
@@ -60,7 +60,7 @@ export default {
       default: null,
       required: true,
     },
-    disableSubmit: {
+    shouldDisableSubmit: {
       type: Boolean,
       default: false,
     },

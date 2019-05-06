@@ -1,9 +1,9 @@
 <template>
   <div class="login-container">
     <v-login
-      :email="pm.formModel.email"
-      :password="pm.formModel.password"
-      :disable-submit="pm.disableSubmit"
+      :email="pm.email"
+      :password="pm.password"
+      :disable-submit="pm.shouldDisableSubmit"
       @submit="pm.submit()"
     ></v-login>
   </div>

@@ -2,74 +2,83 @@ const EMAIL_REGEXP = /\S+@\S+\.\S+/;
 
 export function loginPM() {
   return {
-    formModel: {
-      email: {
-        label: 'Email',
-        value: undefined,
-        error: undefined,
-        valid: undefined,
-        placeholder: 'example@domain.com',
-        blurred: false,
-        get showError() {
-          return !this.valid && this.blurred;
-        },
-        blur() {
-          this.blurred = true;
-        },
-        validate() {
-          if (!this.value) {
-            this.error = 'Email is required';
-            this.valid = false;
-            return;
-          }
-          if (!EMAIL_REGEXP.test(this.value)) {
-            this.error = 'Invalid Email';
-            this.valid = false;
-            return;
-          }
-          this.valid = true;
-        },
+    email: {
+      label: 'Email',
+      value: undefined,
+      error: undefined,
+      valid: undefined,
+      placeholder: 'example@domain.com',
+      _blurred: false,
+      get shouldShowError() {
+        return !this.valid && this._blurred;
       },
-      password: {
-        label: 'Password',
-        value: undefined,
-        error: undefined,
-        valid: undefined,
-        placeholder: 'Minimum of 8 characters',
-        blurred: false,
-        get showError() {
-          return !this.valid && this.blurred;
-        },
-        blur() {
-          this.blurred = true;
-        },
-        validate() {
-          if (!this.value) {
-            this.error = 'Password is required';
-            this.valid = false;
-            return;
-          }
-          if (this.value.length < 8) {
-            this.error = 'Password should be 8 characters minimum';
-            this.valid = false;
-            return;
-          }
-          this.valid = true;
-        },
+      blurred() {
+        this._blurred = true;
       },
-      get valid() {
-        return this.email.valid === true && this.password.valid === true;
+      validate() {
+        if (!this.value) {
+          this.error = 'Email is required';
+          this.valid = false;
+          return;
+        }
+        if (!EMAIL_REGEXP.test(this.value)) {
+          this.error = 'Invalid Email';
+          this.valid = false;
+          return;
+        }
+        this.valid = true;
       },
+    },
+    password: {
+      label: 'Password',
+      value: undefined,
+      error: undefined,
+      valid: undefined,
+      placeholder: 'Minimum of 8 characters',
+      _blurred: false,
+      get shouldShowError() {
+        return !this.valid && this._blurred;
+      },
+      blurred() {
+        this._blurred = true;
+      },
+      validate() {
+        if (!this.value) {
+          this.error = 'Password is required';
+          this.valid = false;
+          return;
+        }
+        if (this.value.length < 8) {
+          this.error = 'Password should be 8 characters minimum';
+          this.valid = false;
+          return;
+        }
+        this.valid = true;
+      },
+    },
+
+    get _valid() {
+      return this.email.valid === true && this.password.valid === true;
+    },
+
+    _validate() {
+      this.password.validate();
+      this.email.validate();
+    },
+
+    get shouldDisableSubmit() {
+      return !this.valid;
     },
 
     alert: undefined,
 
-    get disableSubmit() {
-      return !this.formModel.valid;
-    },
-
     submit() {
-      this.alert = `your password is: ${this.formModel.password.value}`;
+      this._validate();
+      if (!this._valid) {
+        this.alert = 'missing or invalid login data';
+      } else {
+        this.alert = `your password is: ${this.password.value}`;
+      }
     },
   };
 }
