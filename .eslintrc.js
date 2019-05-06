@@ -22,5 +22,7 @@ module.exports = {
     'plugins': [
         'vue'
     ],
-    'rules': {    }
+    'rules': {
+      "vue/component-name-in-template-casing": ["error", "kebab-case"]
+    }
 };
