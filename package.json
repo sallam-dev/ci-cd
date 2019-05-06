@@ -20,19 +20,22 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "serve":"parcel serve src/index.html --open",
+    "serve": "rm -rf ./dist && parcel serve src/index.html --open",
     "serve:e2e": "",
     "bundle": "rm -rf ./dist && parcel build src/index.html",
-    "lint": "",
-    "lint:fix": "",
-    "dups:test": "",
-    "dups:src":"",
+    "lint:code": "eslint --ext .js,.vue --ignore-path .gitignore ./",
+    "lint:style": "stylelint '**/*.{css,vue}' --ignore-path .gitignore",
+    "lint:fix": "npm run lint:code -- --fix && npm run lint:style -- --fix",
+    "lint": "npm run lint:code && npm run lint:style",
+    "dups:src": "jsinspect --threshold 30 --minimum-instances 2 ./src",
+    "dups:test": "jsinspect --threshold 50 --minimum-instances 3 ./tests",
+    "dups": "npm run dups:src && npm run dups:test",
     "test:unit": "",
     "test:int": "",
     "test:e2e": "",
     "test:coverage": "",
     "test": "",
-    "build":""
+    "build": "npm run lint && npm run dups && npm run test"
   },
   "repository": {
     "type": "git",
@@ -62,9 +65,7 @@
     "sass": "^1.20.1",
     "shelljs": "^0.8.3",
     "stylelint": "^10.0.1",
-    "stylelint-config-prettier": "^5.1.0",
     "stylelint-config-recommended": "^2.2.0",
-    "stylelint-prettier": "^1.0.6",
     "vue-hot-reload-api": "^2.3.3",
     "vue-template-compiler": "^2.6.10"
   },
