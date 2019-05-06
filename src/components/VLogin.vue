@@ -32,6 +32,7 @@
         id="psw"
         v-model.trim="password.value"
         type="password"
+        minlength="8"
         :placeholder="password.placeholder"
         required
         @input="password.validate()"
@@ -41,7 +42,7 @@
         {{ password.error }}
       </div>
 
-      <button type="submit" :disabled="disableSubmit">Login</button>
+      <button type="submit" :disabled="shouldDisableSubmit">Login</button>
     </div>
   </form>
 </template>

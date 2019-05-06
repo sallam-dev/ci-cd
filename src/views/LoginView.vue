@@ -3,7 +3,7 @@
     <v-login
       :email="pm.email"
       :password="pm.password"
-      :disable-submit="pm.shouldDisableSubmit"
+      :should-disable-submit="pm.shouldDisableSubmit"
       @submit="pm.submit()"
     ></v-login>
   </div>
