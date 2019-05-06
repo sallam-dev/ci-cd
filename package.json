@@ -30,9 +30,9 @@
     "dups:src": "jsinspect --threshold 30 --minimum-instances 2 ./src",
     "dups:test": "jsinspect --threshold 50 --minimum-instances 3 ./test",
     "dups": "npm run dups:src && npm run dups:test",
-    "test": "NODE_ENV=test nyc npm run test:unit",
     "test:e2e": "",
     "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
+    "test": "NODE_ENV=test nyc npm run test:unit",
     "build": "npm run lint && npm run dups && npm run test && npm run test:e2e"
   },
   "repository": {

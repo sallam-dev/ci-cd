@@ -23,3 +23,5 @@ yarn-error.log*
 *.sln
 *.sw*
 .cache
+.nyc_output
+.coverage

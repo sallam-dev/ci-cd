@@ -1,1 +1,0 @@
-{"uuid":"bbc9fdbc-ced5-46a8-a819-f8e26f621a7c","parent":null,"pid":14847,"argv":["/usr/bin/node","/usr/bin/npm","run","test:unit"],"execArgv":[],"cwd":"/home/user/1/ci-cd-no-cli","time":1557183686860,"ppid":14840,"root":"01cc7e32-cad1-4e76-b0ca-f0173d04f3db","coverageFilename":"/home/user/1/ci-cd-no-cli/.nyc_output/bbc9fdbc-ced5-46a8-a819-f8e26f621a7c.json","files":[]}
