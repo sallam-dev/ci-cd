@@ -1,0 +1,153 @@
+<template>
+  <form @submit.prevent="submit">
+    <div class="imgcontainer">
+      <img
+        src="https://www.w3schools.com/w3images/avatar2.png"
+        alt="Avatar"
+        class="avatar"
+      />
+    </div>
+
+    <div class="container">
+      <label for="uname">
+        <b>{{ email.label }}</b>
+      </label>
+      <input
+        id="uname"
+        v-model.trim="email.value"
+        type="email"
+        :placeholder="email.placeholder"
+        required
+        @input="email.validate()"
+        @blur="email.blur()"
+      />
+      <div v-if="email.showError" class="validation-error">
+        {{ email.error }}
+      </div>
+
+      <label for="psw">
+        <b>{{ password.label }}</b>
+      </label>
+      <input
+        id="psw"
+        v-model.trim="password.value"
+        type="password"
+        :placeholder="password.placeholder"
+        required
+        @input="password.validate()"
+        @blur="password.blur()"
+      />
+      <div v-if="password.showError" class="validation-error">
+        {{ password.error }}
+      </div>
+
+      <button type="submit" :disabled="disableSubmit">Login</button>
+    </div>
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'VLogin',
+  props: {
+    email: {
+      type: Object,
+      default: null,
+      required: true,
+    },
+    password: {
+      type: Object,
+      default: null,
+      required: true,
+    },
+    disableSubmit: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  created() {
+    this.$forceUpdate();
+  },
+  methods: {
+    submit() {
+      this.$emit('submit');
+    },
+  },
+};
+</script>
+
+<style scoped>
+.validation-error {
+  color: #f44336;
+}
+
+/* Full-width inputs */
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+}
+
+button[disabled]:hover {
+  cursor: default;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+</style>
