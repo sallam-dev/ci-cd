@@ -1,0 +1,37 @@
+steps:
+  # ===== get cached build dependencies =====
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: "get-cache"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        gsutil cp gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar /tmp/ || exit 0 \
+        && tar -xf /tmp/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar --directory ~/ || exit 0
+
+  - name: "cypress/base:10"
+    id: "install-deps"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        npm ci
+
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: "save-cache"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        tar -C ~/ -cf $REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar .cache \
+        && gsutil cp $REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar
+
+  - name: "cypress/base:10"
+    id: "build"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        npm run build
+
+timeout: "600s"
