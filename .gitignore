@@ -24,4 +24,4 @@ yarn-error.log*
 *.sw*
 .cache
 .nyc_output
-.coverage
+coverage
