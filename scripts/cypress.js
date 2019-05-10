@@ -11,19 +11,20 @@ const {
 } = require('./configs');
 
 (async function main() {
-  function isHeadlessMode() {
-    let modeArgIndex = process.argv.indexOf('--mode');
-    let mode;
-    if (modeArgIndex > -1) {
-      mode = process.argv[modeArgIndex + 1];
-    }
-
-    return mode == 'headless';
-  }
+  const args = {
+    get headless() {
+      return process.argv.includes('--headless');
+    },
+    get noVideo() {
+      return process.argv.includes('--no-video');
+    },
+  };
 
   try {
+    const server = await parcel.serve(e2eServerPort);
+
     const config = {
-      baseUrl: `http://localhost:${e2eServerPort}${publicPath}`,
+      baseUrl: `http://localhost:${server.address().port}${publicPath}`,
       fileServerFolder: outputDir,
       fixturesFolder: `${cypressDir}/fixtures`,
       integrationFolder: `${testDir}/e2e`,
@@ -31,11 +32,11 @@ const {
       pluginsFile: `${cypressDir}/plugins/index.js`,
       supportFile: `${cypressDir}/support/index.js`,
       screenshotsFolder: `${projectRoot}/.cypress/screenshots`,
-      videosFolder: `${projectRoot}/.cypress/videos`,
+      videoFolder: `${projectRoot}/.cypress/video`,
+      video: !args.noVideo,
     };
-    await parcel.serve(e2eServerPort);
 
-    if (isHeadlessMode()) {
+    if (args.headless) {
       console.info('running cypress in headless mode...');
       const result = await cypress.run({
         config,

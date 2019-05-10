@@ -21,7 +21,7 @@
   },
   "scripts": {
     "serve": "node ./scripts/serve.js",
-    "serve:e2e": "node ./scripts/cypress.js --mode ui",
+    "serve:e2e": "node ./scripts/cypress.js",
     "bundle": "node ./scripts/bundle.js",
     "lint:code": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "lint:style": "stylelint '**/*.{css,vue}' --ignore-path .gitignore",
@@ -30,7 +30,7 @@
     "dups:src": "jsinspect --threshold 30 --minimum-instances 2 ./src",
     "dups:test": "jsinspect --threshold 50 --minimum-instances 2 ./test",
     "dups": "npm run dups:src && npm run dups:test",
-    "test:e2e": "node ./scripts/cypress.js --mode headless",
+    "test:e2e": "node ./scripts/cypress.js --headless --no-video",
     "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
     "test": "NODE_ENV=test nyc npm run test:unit",
     "build": "npm run lint && npm run dups && npm run test && npm run test:e2e",
