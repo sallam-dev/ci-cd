@@ -12,4 +12,5 @@ module.exports = {
   sourceDir: resolve('src'),
   testDir: resolve('test'),
   parcelCacheDir: resolve('.cache'),
+  projectRoot: resolve(''),
 };

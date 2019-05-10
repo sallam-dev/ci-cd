@@ -1,13 +1,15 @@
 /* eslint no-console: 'off' */
-const parcel = require('./parcel')();
+const parcel = require('./parcel')({
+  production: true,
+});
 const cypress = require('cypress');
-
 const {
   publicPath,
   e2eServerPort,
   outputDir,
   cypressDir,
   testDir,
+  projectRoot,
 } = require('./configs');
 
 (async function main() {
@@ -21,38 +23,35 @@ const {
     return mode == 'headless';
   }
 
-  const config = {
-    baseUrl: `http://localhost:${e2eServerPort}${publicPath}`,
-    fileServerFolder: outputDir,
-    fixturesFolder: `${cypressDir}/fixtures`,
-    integrationFolder: `${testDir}/e2e`,
-    testFiles: '**/*.e2e.js',
-    pluginsFile: `${cypressDir}/plugins/index.js`,
-    supportFile: `${cypressDir}/support/index.js`,
-  };
-  await parcel.serve(e2eServerPort);
+  try {
+    const config = {
+      baseUrl: `http://localhost:${e2eServerPort}${publicPath}`,
+      fileServerFolder: outputDir,
+      fixturesFolder: `${cypressDir}/fixtures`,
+      integrationFolder: `${testDir}/e2e`,
+      testFiles: '**/*.e2e.js',
+      pluginsFile: `${cypressDir}/plugins/index.js`,
+      supportFile: `${cypressDir}/support/index.js`,
+      screenshotsFolder: `${projectRoot}/.cypress/screenshots`,
+      videosFolder: `${projectRoot}/.cypress/videos`,
+    };
+    await parcel.serve(e2eServerPort);
 
-  if (isHeadlessMode()) {
-    try {
+    if (isHeadlessMode()) {
       console.info('running cypress in headless mode...');
       const result = await cypress.run({
         config,
       });
-      process.exit(result.totalFailed);
-    } catch (err) {
-      console.error(err);
-      process.exit(1);
-    }
-  } else {
-    try {
+      process.exit(result.totalFailed || result.failures);
+    } else {
       console.info('opening cypress...');
       const exitCode = await cypress.open({
         config,
       });
-      process.exit(exitCode);
-    } catch (err) {
-      console.error(err);
-      process.exit(1);
+      return process.exit(exitCode);
     }
+  } catch (err) {
+    console.error(err);
+    return process.exit(1);
   }
 })();

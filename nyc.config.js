@@ -11,7 +11,7 @@ module.exports = {
   'check-coverage': true,
   'all': true,
   'per-file': true,
-  'report-dir': 'coverage',
+  'report-dir': '.coverage',
   'lines': 85,
   'statements': 85,
   'functions': 85,

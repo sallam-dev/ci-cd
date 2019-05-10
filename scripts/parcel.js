@@ -1,4 +1,5 @@
 const Bundler = require('parcel-bundler');
+const shell = require('shelljs');
 const {
   entryPoint,
   devServerPort,
@@ -8,6 +9,7 @@ const {
 } = require('./configs');
 
 module.exports = function bundlerCreator({ production = false } = {}) {
+  shell.rm('-rf', [buildDir, parcelCacheDir]);
   const config = {
     outDir: outputDir,
     outFile: 'index.html', // The name of the outputFile
