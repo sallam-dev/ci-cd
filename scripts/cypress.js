@@ -1,7 +1,5 @@
 /* eslint no-console: 'off' */
-const parcel = require('./parcel')({
-  production: true,
-});
+const parcel = require('./parcel')();
 const cypress = require('cypress');
 const {
   publicPath,

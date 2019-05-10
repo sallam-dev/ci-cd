@@ -18,10 +18,15 @@
         type="email"
         :placeholder="email.placeholder"
         required
+        data-test="email-input"
         @input="email.validate()"
         @blur="email.blurred()"
       />
-      <div v-if="email.shouldShowError" class="validation-error">
+      <div
+        v-if="email.shouldShowError"
+        class="validation-error"
+        data-test="email-validation-error"
+      >
         {{ email.error }}
       </div>
 
@@ -35,14 +40,25 @@
         minlength="8"
         :placeholder="password.placeholder"
         required
+        data-test="password-input"
         @input="password.validate()"
         @blur="password.blurred()"
       />
-      <div v-if="password.shouldShowError" class="validation-error">
+      <div
+        v-if="password.shouldShowError"
+        class="validation-error"
+        data-test="password-validation-error"
+      >
         {{ password.error }}
       </div>
 
-      <button type="submit" :disabled="shouldDisableSubmit">Login</button>
+      <button
+        data-test="login-button"
+        type="submit"
+        :disabled="shouldDisableSubmit"
+      >
+        Login
+      </button>
     </div>
   </form>
 </template>
