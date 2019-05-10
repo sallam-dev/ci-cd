@@ -1,11 +1,7 @@
 <template>
   <form @submit.prevent="submit">
     <div class="imgcontainer">
-      <img
-        src="https://www.w3schools.com/w3images/avatar2.png"
-        alt="Avatar"
-        class="avatar"
-      />
+      <img src="../assets/avatar.png" alt="Avatar" class="avatar" />
     </div>
 
     <div class="container">
