@@ -42,13 +42,13 @@ const {
       const result = await cypress.run({
         config,
       });
-      process.exit(result.totalFailed || result.failures);
+      process.exit(result.totalFailed || result.failures || 0);
     } else {
       console.info('opening cypress...');
       const exitCode = await cypress.open({
         config,
       });
-      return process.exit(exitCode);
+      return process.exit(exitCode || 0);
     }
   } catch (err) {
     console.error(err);
