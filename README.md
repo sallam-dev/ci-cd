@@ -1,5 +1,5 @@
 # CI/CD Boilerplate
-This is an example of CI pipeline without using any frameworks CLI. We are deploying to a google cloud bucket
+Bolierplate for CI pipeline without using any frameworks CLI. It uses Google Cloud Build and deploys to Google Cloud Storage
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ This is an example of CI pipeline without using any frameworks CLI. We are deplo
 Clone the repository
 
 ```bash
-git clone https://github.com/sallamx99/ci-cd-examples
+git clone https://github.com/sallamx99/ci-cd
 ```
 Install dependencies with exact dependency tree
 
@@ -23,11 +23,15 @@ Example for running e2e tests
 ```bash
 npm run test:e2e
 ```
-To run the pipeline and generate a bundle run
+To run the pipeline
 ```bash
 npm run build
 ```
-The npm scripts tested to be working on Linux. If you're using Windows 10, please consider using Windows Bash.
+To generate a bundle
+```bash
+npm run bundle
+```
+The npm scripts tested to be working on Linux. Contributions are welcome
 
 ## Google Cloud Build
 The CI used is Google Cloud Build and it is configured in `cloudbuild.yaml`
