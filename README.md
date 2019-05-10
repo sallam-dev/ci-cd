@@ -1,5 +1,4 @@
-# CI/CD without frameworks CLI
-
+# CI/CD Boilerplate
 This is an example of CI pipeline without using any frameworks CLI. We are deploying to a google cloud bucket
 
 ## Getting Started
