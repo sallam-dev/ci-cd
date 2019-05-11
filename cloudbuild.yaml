@@ -6,7 +6,7 @@ steps:
     args:
       - -c
       - |
-        gsutil cp gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar /tmp/ || exit 0 \
+        gsutil -m cp gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar /tmp/ || exit 0 \
         && tar -xf /tmp/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar --directory ~/ || exit 0
 
   - name: "cypress/base:10"
@@ -24,7 +24,7 @@ steps:
       - -c
       - |
         tar -C ~/ -cf $REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar .cache \
-        && gsutil cp $REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar
+        && gsutil -m cp $REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar gs://dependency-cache/$REPO_NAME-$(sha256sum package-lock.json | cut -c1-10).tar
 
   - name: "cypress/base:10"
     id: "build"
@@ -33,5 +33,15 @@ steps:
       - -c
       - |
         npm run build
+
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: "deploy"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        if [ $BRANCH_NAME = master ]; then
+          sh deploy.sh
+        fi;
 
 timeout: "600s"

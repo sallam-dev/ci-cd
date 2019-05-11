@@ -33,8 +33,7 @@
     "test:e2e": "node ./scripts/cypress.js --headless --no-video",
     "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
     "test": "NODE_ENV=test nyc npm run test:unit",
-    "build": "npm run lint && npm run dups && npm run test && npm run test:e2e",
-    "deploy": "sh ./scripts/deploy.sh"
+    "build": "npm run lint && npm run dups && npm run test && npm run test:e2e && npm run bundle"
   },
   "repository": {
     "type": "git",
