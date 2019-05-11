@@ -108,7 +108,7 @@ input[type='password'] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4caf9f;
+  background-color: #4caf50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
