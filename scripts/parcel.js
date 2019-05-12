@@ -13,7 +13,7 @@ module.exports = function bundlerCreator({ production = false } = {}) {
   const config = {
     outDir: outputDir,
     outFile: 'index.html', // The name of the outputFile
-    publicUrl: production ? './' : publicPath, // The url to serve on, defaults to '/'
+    publicUrl: publicPath, // The url to serve on, defaults to '/'
     watch: !production, // Whether to watch the files and rebuild them on change, defaults to process.env.NODE_ENV !== 'production'
     cache: true, // Enabled or disables caching, defaults to true
     cacheDir: parcelCacheDir, // The directory cache gets put in, defaults to .cache
