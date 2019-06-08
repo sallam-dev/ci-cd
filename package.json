@@ -20,20 +20,16 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "serve": "node ./scripts/serve.js",
-    "serve:e2e": "node ./scripts/cypress.js",
-    "bundle": "node ./scripts/bundle.js",
+    "serve": "rm -rf ./dist && parcel serve src/index.html",
+    "bundle": "rm -rf ./dist && parcel build src/index.html",
     "lint:code": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "lint:style": "stylelint '**/*.{css,vue}' --ignore-path .gitignore",
-    "lint:fix": "npm run lint:code -- --fix && npm run lint:style -- --fix",
     "lint": "npm run lint:code && npm run lint:style",
-    "dups:src": "jsinspect --threshold 30 --minimum-instances 2 src",
-    "dups:test": "jsinspect --threshold 50 --minimum-instances 2 test/**/*.js",
-    "dups": "npm run dups:src && npm run dups:test",
+    "dups": "jsinspect --threshold 30 --minimum-instances 2 src",
     "test:e2e": "node ./scripts/cypress.js --headless --no-video",
     "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
-    "test": "NODE_ENV=test nyc npm run test:unit",
-    "build": "npm run lint && npm run dups && npm run test && npm run test:e2e && npm run bundle"
+    "coverage": "NODE_ENV=test nyc npm run test:unit",
+    "build": "npm run lint && npm run dups && npm run coverage && npm run test:e2e && npm run bundle"
   },
   "repository": {
     "type": "git",
