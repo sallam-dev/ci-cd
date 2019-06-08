@@ -1,6 +1,8 @@
 const EMAIL_REGEXP = /\S+@\S+\.\S+/;
 
 export function loginPM() {
+  const unusedVariable = 'unused';
+
   return {
     email: {
       label: 'Email',
@@ -74,6 +76,15 @@ export function loginPM() {
     alert: undefined,
 
     submit() {
+      this._validate();
+      if (!this._valid) {
+        this.alert = 'missing or invalid';
+      } else {
+        this.alert = `your password is: ${this.password.value}`;
+      }
+    },
+
+    submitAgain() {
       this._validate();
       if (!this._valid) {
         this.alert = 'missing or invalid login data';
