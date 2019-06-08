@@ -21,6 +21,7 @@
   },
   "scripts": {
     "serve": "rm -rf ./dist && parcel serve src/index.html",
+    "serve:e2e": "node ./scripts/cypress.js",
     "bundle": "rm -rf ./dist && parcel build src/index.html --no-source-maps",
     "lint:code": "eslint --ext .js,.vue --ignore-path .gitignore ./",
     "lint:style": "stylelint '**/*.{css,vue}' --ignore-path .gitignore",
