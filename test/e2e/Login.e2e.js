@@ -51,7 +51,7 @@ describe('User Login Form', () => {
 
     // validate password error is shown once blurred at first
     page.passwordInput.blur();
-    page.passwordValidationError.should('not.exist');
+    page.passwordValidationError.should('exist');
 
     page.emailInput.clear().type('valid@mail.test');
     page.emailValidationError.should('not.exist');
