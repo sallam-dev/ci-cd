@@ -20,6 +20,22 @@ describe('LoginPM Unit', function() {
     assert.isFunction(pm.password.blurred);
     assert.isFunction(pm.password.validate);
   });
+  it('should have a correct password object on init', function() {
+    let pm = loginPM();
+    assert.equal(pm.password.label, 'Password');
+    assert.equal(pm.password.placeholder, 'Minimum of 8 characters');
+    assert.isFalse(pm.password.shouldShowError);
+    assert.isFunction(pm.password.blurred);
+    assert.isFunction(pm.password.validate);
+  });
+  it('should have a correct password object on init', function() {
+    let pm = loginPM();
+    assert.equal(pm.password.label, 'Password');
+    assert.equal(pm.password.placeholder, 'Minimum of 8 characters');
+    assert.isFalse(pm.password.shouldShowError);
+    assert.isFunction(pm.password.blurred);
+    assert.isFunction(pm.password.validate);
+  });
 
   it('should disable submit on init', function() {
     let pm = loginPM();
