@@ -20,13 +20,13 @@ export default {
       pm: loginPM(),
     };
   },
-  // watch: {
-  //   'pm.alert': function alertWatcher(value) {
-  //     if (value) {
-  //       window.alert(value);
-  //     }
-  //   },
-  // },
+  watch: {
+    'pm.alert': function alertWatcher(value) {
+      if (value) {
+        window.alert(value);
+      }
+    },
+  },
 };
 </script>
 
