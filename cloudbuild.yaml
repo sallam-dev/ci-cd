@@ -28,6 +28,7 @@ steps:
 
   - name: "cypress/base:10"
     id: "build"
+    waitFor: ["install-deps"]
     entrypoint: "sh"
     args:
       - -c
@@ -36,6 +37,7 @@ steps:
 
   - name: "gcr.io/cloud-builders/gsutil"
     id: "deploy"
+    waitFor: ["save-cache", "build"]
     entrypoint: "sh"
     args:
       - -c
