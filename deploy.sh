@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BUCKET_NAME=egyptjs.sallam.dev
+BUCKET_NAME=demo.sallam.dev
 
 gsutil -m rsync -rdJ dist gs://$BUCKET_NAME
 
