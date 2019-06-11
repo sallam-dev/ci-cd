@@ -18,7 +18,6 @@ steps:
 
   - name: "gcr.io/cloud-builders/gsutil"
     id: "deploy"
-    waitFor: ["save-cache", "build"]
     entrypoint: "sh"
     args:
       - -c

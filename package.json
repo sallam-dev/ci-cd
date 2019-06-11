@@ -27,8 +27,8 @@
     "lint:style": "stylelint '**/*.{css,vue}' --ignore-path .gitignore",
     "lint": "npm run lint:code && npm run lint:style",
     "dups": "jsinspect --threshold 30 --minimum-instances 2 src",
-    "test:e2e": "node ./scripts/cypress.js --headless --no-video",
     "test:unit": "mocha --require @babel/register ./test/unit/**/*.unit.js",
+    "test:e2e": "node ./scripts/cypress.js --headless --no-video",
     "coverage": "NODE_ENV=test nyc npm run test:unit",
     "build": "npm run lint && npm run dups && npm run coverage && npm run test:e2e && npm run bundle"
   },
