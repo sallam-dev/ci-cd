@@ -21,6 +21,8 @@ steps:
     args:
       - -c
       - |
-        sh deploy.sh
+        if [ $BRANCH_NAME = master ]; then
+          sh deploy.sh
+        fi;
 
 timeout: "600s"
