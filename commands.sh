@@ -2,10 +2,10 @@
    rm -rf ./dist
 
 # serve
-    ./node_modules/.bin/parcel serve src/index.html
+    # ./node_modules/.bin/parcel serve src/index.html
 
 # bundle
-    ./node_modules/.bin/parcel build src/index.html --no-source-maps
+    # ./node_modules/.bin/parcel build src/index.html --no-source-maps
 
 # lint code
     ./node_modules/.bin/eslint --ext .js,.vue --ignore-path .gitignore ./
@@ -26,4 +26,4 @@
     NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --require @babel/register ./test/unit/**/*.unit.js
 
 #test e2e with ui
-#    node ./scripts/cypress.js
+   node ./scripts/cypress.js
