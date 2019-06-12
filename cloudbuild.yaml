@@ -16,14 +16,14 @@ steps:
       - |
         npm run build
 
-  # - name: "gcr.io/cloud-builders/gsutil"
-  #   id: "deploy"
-  #   entrypoint: "sh"
-  #   args:
-  #     - -c
-  #     - |
-  #       if [ $BRANCH_NAME = master ]; then
-  #         sh deploy.sh
-  #       fi;
+  - name: "gcr.io/cloud-builders/gsutil"
+    id: "deploy"
+    entrypoint: "sh"
+    args:
+      - -c
+      - |
+        if [ $BRANCH_NAME = master ]; then
+          sh deploy.sh
+        fi;
 
 timeout: "600s"

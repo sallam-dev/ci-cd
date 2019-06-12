@@ -78,7 +78,7 @@ export function loginPM() {
       if (!this._valid) {
         this.alert = 'missing or invalid login data';
       } else {
-        // this.alert = `your password is: ${this.password.value}`;
+        this.alert = `your password is: ${this.password.value}`;
       }
     },
   };
